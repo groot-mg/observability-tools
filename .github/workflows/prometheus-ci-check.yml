@@ -1,14 +1,14 @@
-name: Prometheus CI check
+name: Prometheus
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
-      - monitoring/prometheus/**
+      - prometheus/**
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
-      - monitoring/prometheus/**
+      - prometheus/**
 
 jobs:
   test-prometheus:
@@ -16,4 +16,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build --no-cache -f monitoring/prometheus/tests/Dockerfile -t prometheus-test monitoring/prometheus
+        run: docker build --no-cache -f prometheus/tests/Dockerfile -t prometheus-test prometheus
