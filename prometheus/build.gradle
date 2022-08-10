@@ -1,0 +1,14 @@
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.13.6'
+}
+
+scmVersion {
+    tag { prefix = project.name + '-' }
+    versionIncrementer 'incrementMinor'
+}
+
+project.version = scmVersion.version
+
+task testUsingDockerImage(type: Exec) {
+    commandLine "docker", "build", "--no-cache", "-f", "tests/Dockerfile", "-t", "prometheus-test", "."
+}
