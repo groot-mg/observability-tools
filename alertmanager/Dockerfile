@@ -1,6 +1,6 @@
 FROM prom/alertmanager:v0.24.0
 
-MAINTAINER Mauricio Generoso
+LABEL maintainer="Mauricio Generoso"
 
 ARG ENVIRONMENT
 

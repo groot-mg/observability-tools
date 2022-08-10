@@ -1,6 +1,6 @@
 FROM prom/prometheus:v2.35.0
 
-MAINTAINER Mauricio Generoso
+LABEL maintainer="Mauricio Generoso"
 
 ARG ENVIRONMENT
 
