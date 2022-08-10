@@ -3,3 +3,9 @@
 *.iws
 *.iml
 *.ipr
+
+### VS Code ###
+.vscode/
+
+### Gradle ###
+.gradle/
