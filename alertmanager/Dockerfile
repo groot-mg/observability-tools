@@ -5,4 +5,4 @@ LABEL maintainer="Mauricio Generoso"
 ARG ENVIRONMENT
 
 COPY config/alertmanager-$ENVIRONMENT.yml /etc/alertmanager/alertmanager.yml
-COPY templates/* /etc/alertmanager/
+#COPY templates/* /etc/alertmanager/
