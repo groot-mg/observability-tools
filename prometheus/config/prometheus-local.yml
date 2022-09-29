@@ -30,6 +30,17 @@ scrape_configs:
   #    static_configs:
   #      - targets:
   #        - postgres-exporter:9187
+  - job_name: keycloak
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - keycloak:8080
+  - job_name: keycloak_shopping_api
+    scrape_interval: 5s
+    metrics_path: /realms/shopping-api/metrics
+    static_configs:
+      - targets:
+          - keycloak:8080
   - job_name: service-discovery
     scrape_interval: 5s
     metrics_path: /private/metrics
