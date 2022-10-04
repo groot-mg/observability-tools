@@ -16,45 +16,42 @@ scrape_configs:
     static_configs:
       - targets:
           - localhost:9090
+  - job_name: alertmanager
+    static_configs:
+      - targets:
+          - alertmanager:9093
+  - job_name: tempo
+    static_configs:
+      - targets:
+          - tempo:3100
   - job_name: loki
-    scrape_interval: 5s
     static_configs:
       - targets:
           - loki:3100
-  - job_name: tempo
-    scrape_interval: 5s
-    static_configs:
-      - targets:
-          - tempo:3101
   #  - job_name: postgres-exporter
   #    static_configs:
   #      - targets:
   #        - postgres-exporter:9187
   - job_name: keycloak
-    scrape_interval: 5s
     static_configs:
       - targets:
           - keycloak:8080
   - job_name: keycloak_shopping_api
-    scrape_interval: 5s
     metrics_path: /realms/shopping-api/metrics
     static_configs:
       - targets:
           - keycloak:8080
   - job_name: service-discovery
-    scrape_interval: 5s
     metrics_path: /private/metrics
     static_configs:
       - targets:
           - service-discovery:8081
   - job_name: gateway
-    scrape_interval: 5s
     metrics_path: /private/metrics
     static_configs:
       - targets:
           - gateway:8080
   - job_name: sales-catalog
-    scrape_interval: 5s
     metrics_path: /sales-catalog/private/metrics
     static_configs:
       - targets:
