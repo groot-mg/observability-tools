@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  prometheus:
+    container_name: prometheus
+    build:
+      context: prometheus
+      args:
+        ENVIRONMENT: local
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+
+  # Alert manager is set up to send alert to slack, change the slack channel on alertmanager/config/alertmanager-local.yml and change 'api_url' to enable this
+  alertmanager:
+    container_name: alertmanager
+    build:
+      context: alertmanager
+      args:
+        ENVIRONMENT: local
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+
+  # default user and password: admin
+  grafana:
+    container_name: grafana
+    build: grafana
+    restart: unless-stopped
+    depends_on:
+#      - loki
+      - prometheus
+#      - tempo
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+
+#  tempo:
+#    image: grafana/tempo:1.2.0
+#    container_name: tempo
+#    command: -config.file /etc/tempo-config.yml
+#    volumes:
+#      - ./tempo/tempo.yml:/etc/tempo-config.yml
+#    ports:
+#      - "3101:3100"     # Tempo
+#      - "9411:9411"     # Zipkin
+
+#  loki:
+#    image: grafana/loki:2.4.0
+#    container_name: loki
+#    depends_on:
+#      - fluent-bit
+#    ports:
+#      - "3100:3100"
+
+#  fluent-bit:
+#    image: grafana/fluent-bit-plugin-loki:2.4.0-amd64
+#    container_name: fluent-bit
+#    ports:
+#      - "24224:24224"
+#    environment:
+#      - LOKI_URL=http://loki:3100/loki/api/v1/push
+#    volumes:
+#      - ./fluent-bit/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
