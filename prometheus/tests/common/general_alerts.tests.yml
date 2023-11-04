@@ -5,7 +5,7 @@ evaluation_interval: 1m
 tests:
   - interval: 1m
     input_series:
-      - series: up{job="shopping-api"}
+      - series: up{job="groot-mg"}
         values: 0
     alert_rule_test:
       - alertname: Prometheus_Target_Scrape_Error
@@ -14,8 +14,8 @@ tests:
           - exp_labels:
               alertname: Prometheus_Target_Scrape_Error
               severity: minor
-              job: shopping-api
+              job: groot-mg
             exp_annotations:
               summary: Prometheus targets that cannot be scraped
               description: |-
-                Job: `shopping-api`
+                Job: `groot-mg`

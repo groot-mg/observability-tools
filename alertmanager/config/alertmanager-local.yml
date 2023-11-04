@@ -6,5 +6,5 @@ receivers:
   - name: 'slack-notifications'
     slack_configs:
       - api_url: https://hooks.slack.com/services/changeme
-        channel: '#shopping-api-dev-alerts'
+        channel: '#groot-mg-dev-alerts'
         send_resolved: true # this option makes the alert-manager send another message on slack channel once the alert is resolved
