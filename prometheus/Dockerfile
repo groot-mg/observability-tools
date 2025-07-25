@@ -1,4 +1,4 @@
-FROM prom/prometheus:v2.35.0
+FROM prom/prometheus:v3.5.0
 
 LABEL maintainer="Mauricio Generoso"
 

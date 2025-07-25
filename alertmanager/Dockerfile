@@ -1,4 +1,4 @@
-FROM prom/alertmanager:v0.24.0
+FROM prom/alertmanager:v0.28.1
 
 LABEL maintainer="Mauricio Generoso"
 
